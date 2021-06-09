@@ -1,0 +1,32 @@
+$container-padding-x: 10rem;
+$container-padding-y: 1.5rem;
+
+@mixin custom-container($padding-x: $container-padding-x,$padding-y: $container-padding-y) {
+  width: 100%;
+  padding: $padding-y $padding-x;
+  margin-right: auto;
+  margin-left: auto;
+  height: 90vh;
+}
+
+div {
+  height: 100vh;
+  width: 100vw;
+
+  .custom-container {
+    @include custom-container();
+  }
+
+  nav {
+    height: 5%;
+  }
+
+  main {
+    height: 90%;
+  }
+
+  footer {
+    height: 5%;
+  }
+}
+

@@ -1,0 +1,27 @@
+<div class="container h-100">
+  <div class="row justify-content-between">
+    <span class="col"><h3>Trash</h3></span>
+    <div class="col d-flex justify-content-end">
+      <button (click)="clearAll()" class="m-2 btn btn-dark">Clear All</button>
+      <button routerLink="/" class="m-2 btn btn-dark">Dashboard</button>
+    </div>
+  </div>
+  <div class="card overflow-scroll h-100">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item d-flex justify-content-between bg-dark text-white">
+        <span class="w-25 text-center">Id</span>
+        <span class="w-25 text-center">Name</span>
+        <span class="w-25 text-center">Salary</span>
+        <span class="w-25 text-center">Age</span>
+      </li>
+    </ul>
+    <ul class="list-group list-group-flush overflow-scroll" style="height: 95%">
+      <li class="list-group-item d-flex justify-content-between" *ngFor="let emp of trashItems| sort:'id'">
+        <span class="w-25 text-center">{{emp.id}}</span>
+        <span class="w-25 text-center">{{emp.profile_image}} {{emp.employee_name}}</span>
+        <span class="w-25 text-center">{{emp.employee_salary | currency:'USD':'symbol' : '1.0-0'}}</span>
+        <span class="w-25 text-center">{{emp.employee_age}}</span>
+      </li>
+    </ul>
+  </div>
+</div>
