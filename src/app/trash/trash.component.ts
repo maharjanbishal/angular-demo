@@ -19,7 +19,6 @@ export class TrashComponent implements OnInit {
 
   fetchTrashItems(){
     this.infoStorage.getItems().subscribe((response: Employee[]) => {
-      console.log(response)
       this.trashItems = response;
     }, (err) => console.error(err));
   }

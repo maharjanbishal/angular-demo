@@ -1,0 +1,15 @@
+@import "abstracts/variables";
+
+.navbar {
+  background-color: $primary-color;
+
+  .title {
+    letter-spacing: 5px;
+  }
+
+  @media only screen and (max-width: 667px) {
+    .title {
+      text-align: center !important;
+    }
+  }
+}

@@ -120,7 +120,6 @@ export class ApiService {
   }
 
   errorHandler(error: HttpErrorResponse, toastService: ToastService) {
-    console.log('errorssss')
     toastService.changeMessage({
       message: error.message || "server error.",
       title: 'Error',

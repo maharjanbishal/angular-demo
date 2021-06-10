@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card h-100 overflow-scroll">
   <div class="card-header">
     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isfetching"></span>
     Add New Employee
@@ -40,7 +40,7 @@
         <input type="file" class="form-control" formControlName="profile_image" placeholder="Upload employee image">
       </div>
       <div class="d-grid gap-2 col-6 mx-auto">
-        <button class="btn btn-primary" type="submit" [disabled]="!employeeFormGroup.valid">
+        <button class="btn btn-outline-primary" type="submit" [disabled]="!employeeFormGroup.valid">
           <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="loading"></span>
           {{isUpdate ? 'Update': 'Save'}}
         </button>

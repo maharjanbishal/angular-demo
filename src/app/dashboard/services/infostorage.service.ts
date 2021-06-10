@@ -29,17 +29,11 @@ export class InfostorageService {
       this.trashItems = JSON.parse(items);
       return of(JSON.parse(items));
     }
-    this.toastService.changeMessage({
-      message: 'Empty Trash',
-      title: 'Remove',
-      type: 'warning'
-    });
     return of<Employee[]>([]);
   }
 
   clearAll() {
     this.trashItems = [];
-    window.alert("Cleared all data from trash.")
     this.toastService.changeMessage({
       message: 'Clear All Trash',
       title: 'Clear All',

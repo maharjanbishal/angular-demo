@@ -89,7 +89,6 @@ export class EmployeeFormComponent {
         this.refetch.emit();
         this.router.navigate(['/'])
       }, (error) => {
-        console.log(error)
         this.loading = false;
         this.employeeFormGroup.enable();
       });
@@ -101,7 +100,6 @@ export class EmployeeFormComponent {
         this.refetch.emit();
       }, (error) => {
         this.loading = false;
-        console.log(error)
         this.employeeFormGroup.enable();
       });
     }

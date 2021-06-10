@@ -9,23 +9,28 @@
   </div>
   <div *ngIf="!fetching">
     <ul class="list-group list-group-flush">
-      <li class="list-group-item d-flex justify-content-between">
-        <span class="w-25 text-start">Name</span>
-        <span class="w-25 text-start">Salary</span>
-        <span class="w-25 text-start">Age</span>
-        <span class="w-25 text-start"></span>
+      <li class="list-group-item d-flex justify-content-between row">
+        <span class="col text-end">Id</span>
+        <span class="col-3 text-end">Name</span>
+        <span class="col text-end">Salary</span>
+        <span class="col text-end">Age</span>
+        <span class="col-3 text-end"></span>
       </li>
     </ul>
     <ul class="list-group list-group-flush overflow-scroll" style="height: 95%">
-      <li class="list-group-item d-flex justify-content-between" *ngFor="let emp of employeeslist">
-        <span class="w-25 text-start">{{emp.profile_image}} {{emp.employee_name}}</span>
-        <span class="w-25 text-start">{{emp.employee_salary | currency:'USD':'symbol' : '1.0-0'}}</span>
-        <span class="w-25 text-start">{{emp.employee_age}}</span>
-        <span class="w-25 text-start">
-        <button (click)="onEdit(emp)" class="mx-1 btn btn-warning">Edit</button>
+      <li class="list-group-item d-flex justify-content-between row" *ngFor="let emp of employeeslist">
+        <span class="col text-end">{{emp.id}}</span>
+        <span class="col-3 text-end">{{emp.employee_name}}</span>
+        <span class="col text-end">{{emp.employee_salary | currency:'USD':'symbol' : '1.0-0'}}</span>
+        <span class="col text-end">{{emp.employee_age}}</span>
+        <span class="col-3 text-start">
+        <button (click)="onEdit(emp)"
+                class="mx-1 btn btn-warning d-flex justify-content-center align-items-center"> <img
+          src="assets/icons/edit.svg" width="18" style="color:white"/></button>
         <button (click)="onRemove(emp)" class="mx-1 btn btn-danger">
           <span *ngIf="!(loading && selectedToDelete && emp.id === selectedToDelete.id)">X</span>
-          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="loading && selectedToDelete && emp.id === selectedToDelete.id"></span>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                *ngIf="loading && selectedToDelete && emp.id === selectedToDelete.id"></span>
         </button>
       </span>
       </li>

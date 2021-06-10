@@ -1,15 +1,17 @@
 <div class="container h-100">
-  <div class="row justify-content-end">
-    <button routerLink="/trash" class="m-2 col-1 btn btn-dark">Trash</button>
+  <div class="row mt-3 justify-content-end">
+    <button routerLink="/trash"
+            class="m-2 col-xxl-1 col-xl-1 col-lg-1 col-md-2 col-4 btn btn-outline-dark d-flex justify-content-center align-items-center">
+      <img src="assets/icons/delete.svg" width="18"/> &nbsp;Trash
+    </button>
   </div>
   <div class="row" style="height: 95%">
-    <div class="col" style="height: 95%">
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-12" style="height: 92%">
       <app-employee-list [employeeslist]="employees" [fetching]="loading"></app-employee-list>
     </div>
-    <div class="col">
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-12 emp-form" style="height: 92%">
       <app-employee-form (refetch)="fetchEmployees()"></app-employee-form>
     </div>
   </div>
-
 </div>
 

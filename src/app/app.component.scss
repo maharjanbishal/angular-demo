@@ -1,5 +1,5 @@
-$container-padding-x: 10rem;
-$container-padding-y: 1.5rem;
+@import "abstracts/variables";
+@import "abstracts/mixins";
 
 @mixin custom-container($padding-x: $container-padding-x,$padding-y: $container-padding-y) {
   width: 100%;
