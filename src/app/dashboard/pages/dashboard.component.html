@@ -7,7 +7,7 @@
       <app-employee-list [employeeslist]="employees" [fetching]="loading"></app-employee-list>
     </div>
     <div class="col">
-      <app-employee-form></app-employee-form>
+      <app-employee-form (refetch)="fetchEmployees()"></app-employee-form>
     </div>
   </div>
 </div>

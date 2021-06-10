@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "../../services/api.service";
 import {ActivatedRoute} from "@angular/router";
@@ -10,6 +10,7 @@ import {Employee} from "../../model/employee";
   styleUrls: ['./employee-form.component.scss']
 })
 export class EmployeeFormComponent {
+  @Output() refetch: EventEmitter<any> = new EventEmitter<any>();
   employeeFormGroup: FormGroup = new FormGroup({
     employee_name: new FormControl('', [Validators.required, Validators.minLength(5)]),
     employee_salary: new FormControl('', [Validators.required, Validators.min(10000)]),
@@ -83,8 +84,9 @@ export class EmployeeFormComponent {
       this.api.put({...this.employeeFormGroup.value, 'id': parseInt(this.id)}).subscribe((response) => {
         window.alert("Successfully Updated!");
         this.loading = false;
-        this.employeeFormGroup.enable();
         this.resetForm();
+        this.employeeFormGroup.enable();
+        this.refetch.emit();
       }, (error) => {
         console.log(error)
         this.loading = false;
@@ -93,9 +95,10 @@ export class EmployeeFormComponent {
     } else {
       this.api.post(this.employeeFormGroup.value).subscribe((response) => {
         this.loading = false;
-        this.employeeFormGroup.enable();
         this.resetForm();
+        this.employeeFormGroup.enable();
         window.alert("Successfully saved!");
+        this.refetch.emit();
       }, (error) => {
         this.loading = false;
         console.log(error)

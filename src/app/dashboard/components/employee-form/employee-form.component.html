@@ -7,7 +7,7 @@
     <form [formGroup]="employeeFormGroup" (submit)="submitEmployeeData()" novalidate>
       <div class="mb-3">
         <label class="form-label">Full name</label>
-        <input type="text" class="form-control" formControlName="employee_name" placeholder="John Doe" required>
+        <input type="text" class="form-control" formControlName="employee_name" placeholder="Enter employee name" required>
         <div class="py-1 alert alert-danger d-flex align-items-center my-1"
              *ngIf="employee_name?.touched && employee_name?.invalid">Please enter full name.
         </div>
@@ -17,7 +17,7 @@
       </div>
       <div class="mb-3">
         <label class="form-label">Salary</label>
-        <input type="number" class="form-control" formControlName="employee_salary" placeholder="0" required>
+        <input type="number" class="form-control" formControlName="employee_salary" placeholder="Enter emplyoee salary" required>
         <div class="py-1 alert alert-danger d-flex align-items-center my-1"
              *ngIf="employee_salary?.touched && employee_salary?.invalid">Please enter salary.
         </div>
@@ -27,7 +27,7 @@
       </div>
       <div class="mb-3">
         <label class="form-label">Age</label>
-        <input type="number" class="form-control" formControlName="employee_age" placeholder="0" required>
+        <input type="number" class="form-control" formControlName="employee_age" placeholder="Enter employee age" required>
         <div class="py-1 alert alert-danger d-flex align-items-center my-1"
              *ngIf="employee_age?.touched && employee_age?.invalid">Please enter age
         </div>
@@ -37,7 +37,7 @@
       </div>
       <div class="mb-3">
         <label class="form-label">Image</label>
-        <input type="file" class="form-control" formControlName="profile_image">
+        <input type="file" class="form-control" formControlName="profile_image" placeholder="Upload employee image">
       </div>
       <div class="d-grid gap-2 col-6 mx-auto">
         <button class="btn btn-primary" type="submit" [disabled]="!employeeFormGroup.valid">
