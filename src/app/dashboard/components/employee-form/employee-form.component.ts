@@ -1,8 +1,9 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "../../services/api.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Employee} from "../../model/employee";
+import {ToastService} from "../../../util/services/toast/toast.service";
 
 @Component({
   selector: 'app-employee-form',
@@ -22,7 +23,7 @@ export class EmployeeFormComponent {
   isfetching: boolean = false;
   loading: boolean = false;
 
-  constructor(private api: ApiService, private route: ActivatedRoute) {
+  constructor(private api: ApiService, private route: ActivatedRoute, private router: Router) {
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
       if (this.id) {
@@ -82,11 +83,11 @@ export class EmployeeFormComponent {
     this.employeeFormGroup.disable();
     if (this.isUpdate && this.id) {
       this.api.put({...this.employeeFormGroup.value, 'id': parseInt(this.id)}).subscribe((response) => {
-        window.alert("Successfully Updated!");
         this.loading = false;
         this.resetForm();
         this.employeeFormGroup.enable();
         this.refetch.emit();
+        this.router.navigate(['/'])
       }, (error) => {
         console.log(error)
         this.loading = false;
@@ -97,7 +98,6 @@ export class EmployeeFormComponent {
         this.loading = false;
         this.resetForm();
         this.employeeFormGroup.enable();
-        window.alert("Successfully saved!");
         this.refetch.emit();
       }, (error) => {
         this.loading = false;

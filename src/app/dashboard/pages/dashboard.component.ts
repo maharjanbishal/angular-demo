@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../services/api.service";
 import {Employee} from "../model/employee";
+import {Toast} from "bootstrap";
 
 @Component({
   selector: 'app-dashboard',
@@ -25,5 +26,4 @@ export class DashboardComponent implements OnInit {
       this.employees = data;
     }, (error => console.error(error)))
   }
-
 }

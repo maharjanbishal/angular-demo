@@ -26,5 +26,6 @@ export class TrashComponent implements OnInit {
 
   clearAll() {
     this.infoStorage.clearAll();
+    this.fetchTrashItems();
   }
 }
