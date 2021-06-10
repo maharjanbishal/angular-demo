@@ -1,28 +1,13 @@
 <div class="container h-100">
-<!--  <div class="row justify-content-end">-->
-<!--    <button routerLink="/trash" class="m-2 col-1 btn btn-dark">Trash</button>-->
-<!--  </div>-->
-<!--  <div class="row" style="height: 95%">-->
-<!--    <div class="col" style="height: 95%">-->
-<!--      <app-employee-list [employeeslist]="employees" [fetching]="loading"></app-employee-list>-->
-<!--    </div>-->
-<!--    <div class="col">-->
-<!--      <app-employee-form (refetch)="fetchEmployees()"></app-employee-form>-->
-<!--    </div>-->
-<!--  </div>-->
-  <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
-
-  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
-    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header">
-        <img src="..." class="rounded me-2" alt="...">
-        <strong class="me-auto">Bootstrap</strong>
-        <small>11 mins ago</small>
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-      <div class="toast-body">
-        Hello, world! This is a toast message.
-      </div>
+  <div class="row justify-content-end">
+    <button routerLink="/trash" class="m-2 col-1 btn btn-dark">Trash</button>
+  </div>
+  <div class="row" style="height: 95%">
+    <div class="col" style="height: 95%">
+      <app-employee-list [employeeslist]="employees" [fetching]="loading"></app-employee-list>
+    </div>
+    <div class="col">
+      <app-employee-form (refetch)="fetchEmployees()"></app-employee-form>
     </div>
   </div>
 </div>
