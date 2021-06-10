@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  app_name: "Treeleaf - Demo",
+  app_name: "Treeleaf.ai - Demo",
   server_url: "http://dummy.restapiexample.com/api/v1"
 };
 
