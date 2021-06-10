@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Toast} from "bootstrap";
 import {ToastService} from "./modules/shared/services/toast/toast.service";
 
@@ -14,6 +14,9 @@ export class AppComponent implements OnInit {
     message: '',
     type: ''
   };
+  // @ts-ignore
+  @ViewChild('toast') toast: ElementRef;
+
 
   constructor(private toastService: ToastService
   ) {
@@ -22,18 +25,13 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.toastService.currentMessage.subscribe(message => {
       this.toastMessage = message;
-      if(message){
+      if (message) {
         this.showToast();
       }
     });
   }
 
   showToast() {
-    var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-    var toastList = toastElList.map(function (toastEl) {
-      return new Toast(toastEl);
-    });
-    toastList.forEach(toast => toast.show());
-
+    // new Toast(this.toast.nativeElement).show()
   }
 }

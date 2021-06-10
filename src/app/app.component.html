@@ -12,7 +12,7 @@
 <!--  code snippert of toaster-->
   <div class="position-fixed bottom-0 right-0 left-0 w-100 d-flex justify-content-end text-white">
     <div class="p-3" style="z-index: 5">
-      <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
+      <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" #toast
            [style]="{'background-color': toastMessage?.type === 'success' ? 'green' : toastMessage?.type === 'warning' ? 'orange' : 'red'}">
         <div class="toast-header">
           <strong class="me-auto">{{toastMessage?.title || ''}}</strong>
