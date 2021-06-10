@@ -7,30 +7,15 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {FooterComponent} from './components/footer/footer.component';
-import {DashboardComponent} from './dashboard/pages/dashboard.component';
-import {HttpClientModule} from "@angular/common/http";
-import {EmployeeListComponent} from './dashboard/components/employee-list/employee-list.component';
-import {EmployeeFormComponent} from './dashboard/components/employee-form/employee-form.component';
-import {TrashComponent} from './trash/trash.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {CommonModule} from "@angular/common";
-import { SortPipe } from './util/pipes/sort/sort.pipe';
+import {SharedModule} from "./modules/shared/shared.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    DashboardComponent,
-    EmployeeListComponent,
-    EmployeeFormComponent,
-    TrashComponent,
-    SortPipe
   ],
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     BrowserModule.withServerTransition({appId: 'serverApp'}),
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -39,7 +24,7 @@ import { SortPipe } from './util/pipes/sort/sort.pipe';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    HttpClientModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

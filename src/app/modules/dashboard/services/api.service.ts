@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {environment} from '../../../environments/environment';
+import {environment} from '../../../../environments/environment';
 import {catchError, map, retry} from "rxjs/operators";
 import {Observable, throwError} from "rxjs";
 import {Employee} from "../model/employee";
-import {ToastService} from "../../util/services/toast/toast.service";
+import {ToastService} from "../../shared/services/toast/toast.service";
 
 @Injectable({
   providedIn: 'root'

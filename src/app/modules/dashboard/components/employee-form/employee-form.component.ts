@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "../../services/api.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Employee} from "../../model/employee";
-import {ToastService} from "../../../util/services/toast/toast.service";
+import {ToastService} from "../../../shared/services/toast/toast.service";
 
 @Component({
   selector: 'app-employee-form',
