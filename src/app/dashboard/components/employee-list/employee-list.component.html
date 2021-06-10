@@ -25,7 +25,7 @@
         <span class="col text-end">{{emp.employee_age}}</span>
         <span class="col-3 text-start">
         <button (click)="onEdit(emp)"
-                class="mx-1 btn btn-warning d-flex justify-content-center align-items-center"> <img
+                class="mx-1 btn btn-warning"> <img
           src="assets/icons/edit.svg" width="18" style="color:white"/></button>
         <button (click)="onRemove(emp)" class="mx-1 btn btn-danger">
           <span *ngIf="!(loading && selectedToDelete && emp.id === selectedToDelete.id)">X</span>
