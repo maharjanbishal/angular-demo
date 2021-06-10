@@ -2,23 +2,33 @@
   <div class="card-header">
     Employee List
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item d-flex justify-content-between">
-      <span class="w-25 text-start">Name</span>
-      <span class="w-25 text-start">Salary</span>
-      <span class="w-25 text-start">Age</span>
-      <span class="w-25 text-start"></span>
-    </li>
-  </ul>
-  <ul class="list-group list-group-flush overflow-scroll" style="height: 95%">
-    <li class="list-group-item d-flex justify-content-between" *ngFor="let emp of employeeslist">
-      <span class="w-25 text-start">{{emp.profile_image}} {{emp.employee_name}}</span>
-      <span class="w-25 text-start">{{emp.employee_salary | currency:'USD':'symbol' : '1.0-0'}}</span>
-      <span class="w-25 text-start">{{emp.employee_age}}</span>
-      <span class="w-25 text-start">
-        <button (click)="onRemove(emp)" class="mx-1 btn btn-danger">X</button>
+  <div class="d-flex justify-content-center align-items-center h-100" *ngIf="fetching">
+    <div class="spinner-border" role="status" style="width: 3rem; height: 3rem;">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <div *ngIf="!fetching">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item d-flex justify-content-between">
+        <span class="w-25 text-start">Name</span>
+        <span class="w-25 text-start">Salary</span>
+        <span class="w-25 text-start">Age</span>
+        <span class="w-25 text-start"></span>
+      </li>
+    </ul>
+    <ul class="list-group list-group-flush overflow-scroll" style="height: 95%">
+      <li class="list-group-item d-flex justify-content-between" *ngFor="let emp of employeeslist">
+        <span class="w-25 text-start">{{emp.profile_image}} {{emp.employee_name}}</span>
+        <span class="w-25 text-start">{{emp.employee_salary | currency:'USD':'symbol' : '1.0-0'}}</span>
+        <span class="w-25 text-start">{{emp.employee_age}}</span>
+        <span class="w-25 text-start">
         <button (click)="onEdit(emp)" class="mx-1 btn btn-warning">Edit</button>
+        <button (click)="onRemove(emp)" class="mx-1 btn btn-danger">
+          <span *ngIf="!(loading && selectedToDelete && emp.id === selectedToDelete.id)">X</span>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="loading && selectedToDelete && emp.id === selectedToDelete.id"></span>
+        </button>
       </span>
-    </li>
-  </ul>
+      </li>
+    </ul>
+  </div>
 </div>

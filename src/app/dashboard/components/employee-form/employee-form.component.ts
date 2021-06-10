@@ -18,18 +18,25 @@ export class EmployeeFormComponent {
   })
   isUpdate: boolean = false;
   id: string | null = null;
-
+  isfetching: boolean = false;
+  loading: boolean = false;
 
   constructor(private api: ApiService, private route: ActivatedRoute) {
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
       if (this.id) {
+        this.isfetching = true;
+        this.employeeFormGroup.disable();
         api.findById(parseInt(this.id)).subscribe((employee: Employee) => {
           this.setFormValue(employee);
           this.isUpdate = true;
+          this.isfetching = false;
+          this.employeeFormGroup.enable();
         }, (error => {
           console.error(error);
           this.isUpdate = false
+          this.employeeFormGroup.enable();
+          this.isfetching = false;
         }))
       } else {
         this.isUpdate = false;
@@ -48,7 +55,6 @@ export class EmployeeFormComponent {
     this.employeeFormGroup.controls['employee_age'].setValue(employee_age)
     this.employeeFormGroup.controls['profile_image'].setValue(profile_image)
   }
-
 
   get employee_name() {
     return this.employeeFormGroup.get('employee_name');
@@ -71,16 +77,31 @@ export class EmployeeFormComponent {
   }
 
   submitEmployeeData() {
+    this.loading = true;
+    this.employeeFormGroup.disable();
     if (this.isUpdate && this.id) {
       this.api.put({...this.employeeFormGroup.value, 'id': parseInt(this.id)}).subscribe((response) => {
-        window.alert("Successfully Updated!")
-      }, (error) => console.log(error));
+        window.alert("Successfully Updated!");
+        this.loading = false;
+        this.employeeFormGroup.enable();
+        this.resetForm();
+      }, (error) => {
+        console.log(error)
+        this.loading = false;
+        this.employeeFormGroup.enable();
+      });
     } else {
       this.api.post(this.employeeFormGroup.value).subscribe((response) => {
-        window.alert("Successfully saved!")
-      }, (error) => console.log(error));
+        this.loading = false;
+        this.employeeFormGroup.enable();
+        this.resetForm();
+        window.alert("Successfully saved!");
+      }, (error) => {
+        this.loading = false;
+        console.log(error)
+        this.employeeFormGroup.enable();
+      });
     }
 
-    this.resetForm();
   };
 }

@@ -9,6 +9,7 @@ import {Employee} from "../model/employee";
 })
 export class DashboardComponent implements OnInit {
   employees: Employee[] = [];
+  loading: boolean = false;
 
   constructor(private api: ApiService) {
   }
@@ -18,8 +19,9 @@ export class DashboardComponent implements OnInit {
   }
 
   fetchEmployees() {
+    this.loading = true;
     this.api.get().subscribe((data) => {
-      console.log(data);
+      this.loading = false;
       this.employees = data;
     }, (error => console.error(error)))
   }

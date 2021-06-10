@@ -12,7 +12,10 @@ import {Router} from "@angular/router";
 export class EmployeeListComponent implements OnChanges {
 
   @Input() employeeslist: Employee[] = [];
+  @Input() fetching: boolean = false;
+  loading: boolean = false;
   trashItems: Employee[] = [];
+  selectedToDelete: Employee | null = null;
 
   constructor(private api: ApiService, private infoStorage: InfostorageService, private router: Router) {
     this.fetchTrashItems();
@@ -20,20 +23,23 @@ export class EmployeeListComponent implements OnChanges {
 
   fetchTrashItems() {
     this.infoStorage.getItems().subscribe((response: Employee[]) => {
-      console.log(response)
       this.trashItems = response;
     }, (err) => console.error(err));
   }
 
   onRemove(emp: Employee) {
+    this.loading = true;
+    this.selectedToDelete = emp;
     this.api.remove(emp.id).subscribe(() => {
-      window.alert(`Delete Successful`)
+      this.loading = false;
+      window.alert(`Delete Successful`);
       this.employeeslist = this.employeeslist.filter(employee => employee.id !== emp.id);
       this.infoStorage.addToTrash(emp);
     }, (err) => console.error(err))
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.fetching = changes.fetching.currentValue ?? false;
     const currentVal: any = changes.employeeslist.currentValue;
     // logic to filter data from deleted data from trash
     if (currentVal && currentVal.length > 0) {
